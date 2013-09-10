@@ -17,7 +17,7 @@ RESET_COLOR="%{$reset_color%}"
 
 # which color should be applied?
 USERNAME_NORMAL_COLOR=$DEFAULT
-USERNAME_ROOT_COLOR=$RED
+USERNAME_ROOT_COLOR=$YELLOW
 HOSTNAME_NORMAL_COLOR=$GREY
 # uncomment next line if you want auto-generated hostname color
 #for i in `hostname`; HOSTNAME_NORMAL_COLOR=$COLOR_ARRAY[$[((#i))%7+1]]
@@ -41,7 +41,6 @@ LAST_COMMAND_OUTPUT="$GREY"
 GIT_BRACKET_COLOR="$RESET_COLOR%{$fg[grey]%}"
 GIT_BRANCH_COLOR="%{$fg[green]%}"
 GIT_DIRTY_COLOR="%{$fg[cyan]%}"
-# GIT_DIRTY_COLOR="%{$fg_bold[yellow]%}"
 ZSH_THEME_GIT_PROMPT_PREFIX="$GIT_BRANCH_COLOR"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$RESET_COLOR"
 ZSH_THEME_GIT_PROMPT_DIRTY="$GIT_DIRTY_COLOR•"

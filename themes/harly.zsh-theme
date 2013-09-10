@@ -1,0 +1,58 @@
+# reference colors
+GREEN="%{$fg_bold[green]%}"
+RED="%{$fg_bold[red]%}"
+CYAN="%{$fg_bold[cyan]%}"
+YELLOW="%{$fg_bold[yellow]%}"
+BLUE="%{$fg_bold[blue]%}"
+MAGENTA="%{$fg_bold[magenta]%}"
+WHITE="%{$fg_bold[white]%}"
+GREY="%{$fg_bold[grey]%}"
+DEFAULT="%{$fg_bold[default]%}"
+
+
+COLOR_ARRAY=($GREEN $RED $CYAN $YELLOW $BLUE $MAGENTA $WHITE)
+
+# color reset
+RESET_COLOR="%{$reset_color%}"
+
+# which color should be applied?
+USERNAME_NORMAL_COLOR=$DEFAULT
+USERNAME_ROOT_COLOR=$RED
+HOSTNAME_NORMAL_COLOR=$GREY
+# uncomment next line if you want auto-generated hostname color
+#for i in `hostname`; HOSTNAME_NORMAL_COLOR=$COLOR_ARRAY[$[((#i))%7+1]]
+HOSTNAME_ROOT_COLOR=$RED
+HOSTNAME_COLOR=%(!.$HOSTNAME_ROOT_COLOR.$HOSTNAME_NORMAL_COLOR)
+CURRENT_DIR_COLOR=$DEFAULT
+
+# zsh commands
+USERNAME_COMMAND="%n"
+HOSTNAME_COMMAND="%m"
+CURRENT_DIR="%~"
+
+VIRTUALENV_OUTPUT=
+# output: colors + commands
+USERNAME_OUTPUT="%(!..$USERNAME_NORMAL_COLOR$USERNAME_COMMAND$MAGENTA@)"
+HOSTNAME_OUTPUT="$HOSTNAME_COLOR$HOSTNAME_COMMAND$RESET_COLOR"
+CURRENT_DIR_OUTPUT="$CURRENT_DIR_COLOR$CURRENT_DIR"
+LAST_COMMAND_OUTPUT="$GREY"
+
+# git theming
+GIT_BRACKET_COLOR="$RESET_COLOR%{$fg[grey]%}"
+GIT_BRANCH_COLOR="%{$fg[green]%}"
+GIT_DIRTY_COLOR="%{$fg[cyan]%}"
+# GIT_DIRTY_COLOR="%{$fg_bold[yellow]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="$GIT_BRANCH_COLOR"
+ZSH_THEME_GIT_PROMPT_SUFFIX="$RESET_COLOR"
+ZSH_THEME_GIT_PROMPT_DIRTY="$GIT_DIRTY_COLOR•"
+ZSH_THEME_GIT_PROMPT_CLEAN=" "
+
+if [[ "$SSH_TTY" = "$TTY" ]] then
+    PREFIX="$USERNAME_OUTPUT$HOSTNAME_OUTPUT:"
+else
+    PREFIX=""
+fi
+
+# wrap all together
+PROMPT='$(virtualenv_prompt_info)$PREFIX$CURRENT_DIR_OUTPUT $LAST_COMMAND_OUTPUT%#$RESET_COLOR '
+RPROMPT='%1(j.fg: .) $(git_prompt_info)$RESET_COLOR'
